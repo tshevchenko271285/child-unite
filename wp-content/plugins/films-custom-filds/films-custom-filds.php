@@ -10,7 +10,7 @@ Author URI: http://tshevchenko.tk/unite/
 add_action( "the_content", "unite_archive_films_custom_fields" );
  
 function unite_archive_films_custom_fields( $content ) {
-    
+
     if ( is_post_type_archive( 'unite_films' ) ) {
         $id = get_the_id();
         $new_box = '';
@@ -42,7 +42,7 @@ function unite_archive_films_custom_fields( $content ) {
             $new_box .= '<div>';
             $new_box .= __( 'Цена: ' );
             if ( is_array($price) ) {
-                foreach ($price as $key => $value) {
+                foreach ($price as $value) {
                     $new_box .= '<span>' . $value . __( ' грн.' ). '</span> ';
                 }
             } else {
@@ -56,7 +56,7 @@ function unite_archive_films_custom_fields( $content ) {
             $new_box .= '<div>';
             $new_box .= __( 'Дата выхода: ' );
             if ( is_array($date) ) {
-                foreach ($date as $key => $value) {
+                foreach ($date as $value) {
                     $new_box .= '<span>' . $value . '</span> ';
                 }
             } else {
