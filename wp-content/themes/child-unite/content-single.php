@@ -55,7 +55,59 @@
                 }
 
             } // end check for categories on this blog
+        ?>
+        <div class="row">
+            <!-- Output Taxonomy Country -->
+            <?php if ( taxonomy_exists( 'unite_countries' ) ): ?>
+                <div class="col-md-6">
+                    <span>Страна: </span>
+                    <?php $terms = get_the_terms( $id, 'unite_countries' ); ?>
+                    <?php foreach ($terms as $term): ?>
+                        <a href="<?php echo get_term_link( $term->name, 'unite_countries' ) ?>"><?php echo $term->name ?></a>
+                    <?php endforeach ?>
+                </div>
+            <?php endif ?>
 
+            <!-- Output Taxonomy Ganre -->
+            <?php if ( taxonomy_exists( 'unite_ganre' ) ): ?>
+                <div class="col-md-6">
+                    <span>Жанр: </span>
+                    <?php $terms = get_the_terms( $id, 'unite_ganre' ); ?>
+                    <?php foreach ($terms as $term): ?>
+                        <a href="<?php echo get_term_link( $term->name, 'unite_ganre' ) ?>"><?php echo $term->name ?></a>
+                    <?php endforeach ?>
+                </div>
+            <?php endif ?>
+
+            <!-- Output Custom Field Price -->
+            <?php if ( $price = get_post_meta($id, 'value' ) ): ?>
+                <div class="col-md-6">
+                    <span>Цена: </span>
+                    <?php if ( is_array( $price ) ): ?>
+                        <?php foreach ($price as $value): ?>
+                            <span><?php echo $value ?> грн. </span>
+                        <?php endforeach ?>
+                    <?php else: ?>
+                        <span><?php echo $price ?> грн. </span>
+                    <?php endif ?>
+                </div>
+            <?php endif ?>
+
+            <!-- Output Custom Field Date -->
+            <?php if ( $date = get_post_meta($id, 'date' ) ): ?>
+                <div class="col-md-6">
+                    <span>Дата: </span>
+                    <?php if ( is_array( $date ) ): ?>
+                        <?php foreach ($date as $value): ?>
+                            <span><?php echo $value ?></span>
+                        <?php endforeach ?>
+                    <?php else: ?>
+                        <span><?php echo $date ?></span>
+                    <?php endif ?>
+                </div>
+            <?php endif ?>
+        </div>
+        <?php 
             printf(
                 $meta_text,
                 $category_list,
@@ -63,57 +115,6 @@
                 get_permalink()
             );
         ?>
-        
-        <!-- Output Taxonomy Country -->
-        <?php if ( taxonomy_exists( 'unite_countries' ) ): ?>
-            <div>
-                <span>Страна: </span>
-                <?php $terms = get_the_terms( $id, 'unite_countries' ); ?>
-                <?php foreach ($terms as $term): ?>
-                    <a href="<?php echo get_term_link( $term->name, 'unite_countries' ) ?>"><?php echo $term->name ?></a>
-                <?php endforeach ?>
-            </div>
-        <?php endif ?>
-
-        <!-- Output Taxonomy Ganre -->
-        <?php if ( taxonomy_exists( 'unite_ganre' ) ): ?>
-            <div>
-                <span>Жанр: </span>
-                <?php $terms = get_the_terms( $id, 'unite_ganre' ); ?>
-                <?php foreach ($terms as $term): ?>
-                    <a href="<?php echo get_term_link( $term->name, 'unite_ganre' ) ?>"><?php echo $term->name ?></a>
-                <?php endforeach ?>
-            </div>
-        <?php endif ?>
-
-        <!-- Output Custom Field Price -->
-        <?php if ( $price = get_post_meta($id, 'value' ) ): ?>
-            <div>
-                <span>Цена: </span>
-                <?php if ( is_array( $price ) ): ?>
-                    <?php foreach ($price as $value): ?>
-                        <span><?php echo $value ?> грн. </span>
-                    <?php endforeach ?>
-                <?php else: ?>
-                    <span><?php echo $price ?> грн. </span>
-                <?php endif ?>
-            </div>
-        <?php endif ?>
-
-        <!-- Output Custom Field Date -->
-        <?php if ( $date = get_post_meta($id, 'date' ) ): ?>
-            <div>
-                <span>Дата: </span>
-                <?php if ( is_array( $date ) ): ?>
-                    <?php foreach ($date as $value): ?>
-                        <span><?php echo $value ?></span>
-                    <?php endforeach ?>
-                <?php else: ?>
-                    <span><?php echo $date ?></span>
-                <?php endif ?>
-            </div>
-        <?php endif ?>
-
         <?php edit_post_link( __( 'Edit', 'unite' ), '<i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span>' ); ?>
         <?php unite_setPostViews(get_the_ID()); ?>
         <hr class="section-divider">

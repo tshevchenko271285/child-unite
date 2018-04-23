@@ -13,11 +13,11 @@ function unite_archive_films_custom_fields( $content ) {
 
     if ( is_archive( 'unite_films' ) ) {
         $id = get_the_id();
-        $new_box = '';
+        $new_box = '<div class="row">';
 
          // Output Taxonomy Country
         if ( taxonomy_exists( 'unite_countries' ) ) {
-            $new_box .= '<div>';
+            $new_box .= '<div class="col-md-6">';
             $new_box .= __( 'Страна: ' );
             $terms = get_the_terms( $id, 'unite_countries' );
             foreach ($terms as $term) {                
@@ -28,7 +28,7 @@ function unite_archive_films_custom_fields( $content ) {
 
         // Output Taxonomy Ganre
         if ( taxonomy_exists( 'unite_ganre' ) ) {
-            $new_box .= '<div>';
+            $new_box .= '<div class="col-md-6">';
             $new_box .= __( 'Жанры: ' );
             $terms = get_the_terms( $id, 'unite_ganre' );
             foreach ($terms as $term) {                
@@ -39,7 +39,7 @@ function unite_archive_films_custom_fields( $content ) {
 
         // Output Custom Field Price
         if ( $price = get_post_meta($id, 'value' ) ) {
-            $new_box .= '<div>';
+            $new_box .= '<div class="col-md-6">';
             $new_box .= __( 'Цена: ' );
             if ( is_array($price) ) {
                 foreach ($price as $value) {
@@ -53,7 +53,7 @@ function unite_archive_films_custom_fields( $content ) {
 
         // Output Custom Field Date
         if ( $date = get_post_meta($id, 'date' ) ) {
-            $new_box .= '<div>';
+            $new_box .= '<div class="col-md-6">';
             $new_box .= __( 'Дата выхода: ' );
             if ( is_array($date) ) {
                 foreach ($date as $value) {
@@ -64,7 +64,7 @@ function unite_archive_films_custom_fields( $content ) {
             }
             $new_box .= '</div>';
         }    
-
+        $new_box .= '</div>';
         // Add received content    
         return $content . $new_box;
     } else {
