@@ -60,6 +60,7 @@
             <!-- Output Taxonomy Country -->
             <?php if ( taxonomy_exists( 'unite_countries' ) ): ?>
                 <div class="col-md-6">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                     <span>Страна: </span>
                     <?php $terms = get_the_terms( $id, 'unite_countries' ); ?>
                     <?php foreach ($terms as $term): ?>
@@ -71,6 +72,7 @@
             <!-- Output Taxonomy Ganre -->
             <?php if ( taxonomy_exists( 'unite_ganre' ) ): ?>
                 <div class="col-md-6">
+                    <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
                     <span>Жанр: </span>
                     <?php $terms = get_the_terms( $id, 'unite_ganre' ); ?>
                     <?php foreach ($terms as $term): ?>
@@ -82,7 +84,8 @@
             <!-- Output Custom Field Price -->
             <?php if ( $price = get_post_meta($id, 'value' ) ): ?>
                 <div class="col-md-6">
-                    <span>Цена: </span>
+                    <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+                    <span class="label">Цена: </span>
                     <?php if ( is_array( $price ) ): ?>
                         <?php foreach ($price as $value): ?>
                             <span><?php echo $value ?> грн. </span>
@@ -96,7 +99,8 @@
             <!-- Output Custom Field Date -->
             <?php if ( $date = get_post_meta($id, 'date' ) ): ?>
                 <div class="col-md-6">
-                    <span>Дата: </span>
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    <span class="label">Дата: </span>
                     <?php if ( is_array( $date ) ): ?>
                         <?php foreach ($date as $value): ?>
                             <span><?php echo $value ?></span>
