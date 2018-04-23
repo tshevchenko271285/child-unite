@@ -11,6 +11,7 @@ function create_post_type_unite_films() {
       ),
       'public' => true,
       'has_archive' => true,
+      'supports' => array('title','editor', 'custom-fields'), // Sorry, forgot ))
     )
   );
 }
@@ -116,4 +117,3 @@ function create_taxonomy_unite_actors(){
     'hierarchical'          => true,
   ) );
 }
-
