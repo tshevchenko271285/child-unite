@@ -40,6 +40,7 @@ function create_taxonomy_unite_ganre(){
     ),
     'public'                => true,
     'hierarchical'          => true,
+    'show_admin_column'     => true,
   ) );
 }
 
@@ -117,3 +118,21 @@ function create_taxonomy_unite_actors(){
     'hierarchical'          => true,
   ) );
 }
+
+/**
+**  Create shortcode for received last 5 films
+*/
+function unite_last_films(){
+    $posts = get_posts( 'post_type=unite_films' );    
+    if ( $posts ) {
+        // Output List
+        echo '<ul>';        
+        foreach($posts as $post){ setup_postdata($post);
+            // Output Link
+            echo '<li><a href="' . get_the_permalink( $post ). '">' . $post->post_title . '</a></li>';
+        }
+        echo '</ul>';
+    }
+    wp_reset_postdata();
+} 
+add_shortcode( 'unitelastfilms', 'unite_last_films' );

@@ -11,7 +11,7 @@ add_action( "the_content", "unite_archive_films_custom_fields" );
  
 function unite_archive_films_custom_fields( $content ) {
 
-    if ( is_post_type_archive( 'unite_films' ) ) {
+    if ( is_archive( 'unite_films' ) ) {
         $id = get_the_id();
         $new_box = '';
 
