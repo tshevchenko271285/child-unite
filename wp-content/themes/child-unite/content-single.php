@@ -59,26 +59,30 @@
         <div class="row">
             <!-- Output Taxonomy Country -->
             <?php if ( taxonomy_exists( 'unite_countries' ) ): ?>
+                <?php if ( $terms = get_the_terms( $id, 'unite_countries' ) ): ?>
                 <div class="col-md-6">
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                     <span>Страна: </span>
+                        
                     <?php $terms = get_the_terms( $id, 'unite_countries' ); ?>
                     <?php foreach ($terms as $term): ?>
                         <a href="<?php echo get_term_link( $term->name, 'unite_countries' ) ?>"><?php echo $term->name ?></a>
                     <?php endforeach ?>
                 </div>
+                <?php endif ?>
             <?php endif ?>
 
             <!-- Output Taxonomy Ganre -->
             <?php if ( taxonomy_exists( 'unite_ganre' ) ): ?>
+                <?php if ( $terms = get_the_terms( $id, 'unite_ganre' ) ): ?>
                 <div class="col-md-6">
                     <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
                     <span>Жанр: </span>
-                    <?php $terms = get_the_terms( $id, 'unite_ganre' ); ?>
                     <?php foreach ($terms as $term): ?>
                         <a href="<?php echo get_term_link( $term->name, 'unite_ganre' ) ?>"><?php echo $term->name ?></a>
                     <?php endforeach ?>
                 </div>
+                <?php endif ?>
             <?php endif ?>
 
             <!-- Output Custom Field Price -->

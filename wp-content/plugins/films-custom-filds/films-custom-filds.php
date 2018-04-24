@@ -16,11 +16,10 @@ function unite_archive_films_custom_fields( $content ) {
         $new_box = '<div class="row">';
 
          // Output Taxonomy Country
-        if ( taxonomy_exists( 'unite_countries' ) ) {
+        if ( taxonomy_exists( 'unite_countries' ) && $terms = get_the_terms( $id, 'unite_countries' ) ) {
             $new_box .= '<div class="col-md-6">';
             $new_box .= '<span class="glyphicon glyphicon-home" aria-hidden="true"></span> ';
             $new_box .= '<span>' . __( 'Страна: ' ) . '</span>';
-            $terms = get_the_terms( $id, 'unite_countries' );
             foreach ($terms as $term) {                
                 $new_box .= ' <a href="' . get_term_link( $term->name, 'unite_countries' ) . '">' . $term->name . '</a>';
             }
@@ -28,11 +27,10 @@ function unite_archive_films_custom_fields( $content ) {
         }
 
         // Output Taxonomy Ganre
-        if ( taxonomy_exists( 'unite_ganre' ) ) {
+        if ( taxonomy_exists( 'unite_ganre' ) && $terms = get_the_terms( $id, 'unite_ganre' ) ) {
             $new_box .= '<div class="col-md-6">';
             $new_box .= '<span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> ';
             $new_box .= '<span>' . __( 'Жанр: ' ) . '</span>';
-            $terms = get_the_terms( $id, 'unite_ganre' );
             foreach ($terms as $term) {                
                 $new_box .= ' <a href="' . get_term_link( $term->name, 'unite_ganre' ) . '">' . $term->name . '</a>';
             }
